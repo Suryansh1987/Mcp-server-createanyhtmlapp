@@ -1,0 +1,70 @@
+{
+  "name": "claude-vscode-mcp",
+  "displayName": "AI Web App Generator",
+  "description": "Generate web applications using natural language prompts through MCP",
+  "version": "0.1.0",
+  "engines": {
+    "vscode": "^1.60.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "claude-vscode-mcp.connect",
+        "title": "AI Web Generator: Connect to MCP Server"
+      },
+      {
+        "command": "claude-vscode-mcp.generateCode",
+        "title": "AI Web Generator: Generate Web App from Prompt"
+      }
+    ],
+    "configuration": {
+      "title": "AI Web App Generator",
+      "properties": {
+        "claudeVscodeMcp.serverUrl": {
+          "type": "string",
+          "default": "ws://localhost:3000",
+          "description": "URL of the MCP server"
+        }
+      }
+    },
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "claude-vscode-mcp.connect",
+          "when": "true"
+        },
+        {
+          "command": "claude-vscode-mcp.generateCode",
+          "when": "true"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "node ./test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/glob": "^8.1.0",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "16.x",
+    "@types/vscode": "^1.60.0",
+    "@types/ws": "^8.5.4",
+    "@vscode/test-electron": "^2.3.0",
+    "eslint": "^8.39.0",
+    "glob": "^8.1.0",
+    "mocha": "^10.2.0",
+    "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "ws": "^8.13.0"
+  }
+}
